@@ -92,13 +92,13 @@ function fixMacUsedFile(){
 alias rncache="watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && npm cache clean && npm install && npm start -- --reset-cache"
 
 # Databases
-alias mysqlstart="cd $HOME/Projects/mysql && docker-compose up -d && cd -"
+alias mysqlstart="cd $HOME/Projects/mysql8 && docker-compose up -d && cd -"
 alias startmysql="mysqlstart"
-alias mysqlstop="cd $HOME/Projects/mysql && docker-compose down && cd -"
+alias mysqlstop="cd $HOME/Projects/mysql8 && docker-compose down && cd -"
 alias psqlstart="cd $HOME/Projects/postgres && docker-compose up -d && cd -"
 alias psqlstop="cd $HOME/Projects/postgres && docker-compose down && cd -"
 
-function calara(){
+function cala(){
     mysqlstart
     cd "$HOME/Projects/Calibre/calibre_laravel"
     php artisan serve

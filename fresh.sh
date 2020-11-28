@@ -13,6 +13,9 @@ brew update
 # Install all our dependencies with bundle (See Brewfile)
 brew tap homebrew/bundle
 brew bundle
+brew install vim --with-override-system-vi
+# Remove outdated versions from the cellar.
+brew cleanup
 
 # Set default MySQL root password and auth type.
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
@@ -31,8 +34,11 @@ $HOME/.composer/vendor/bin/valet install
 mkdir $HOME/Sites
 
 # Create sites subdirectories
-mkdir $HOME/Sites/blade-ui-kit
-mkdir $HOME/Sites/laravel
+mkdir $HOME/Projects
+mkdir $HOME/Projects/open_source
+mkdir $HOME/Projects/clients
+mkdir $HOME/Projects/learning
+mkdir $HOME/Projects/cloned_projects
 
 # Clone Github repositories
 ./clone.sh
@@ -40,6 +46,8 @@ mkdir $HOME/Sites/laravel
 # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
 rm -rf $HOME/.zshrc
 ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
+ln -s $HOME/.dotfiles/.tmux.config $HOME/.tmux.config
+
 
 # Symlink the Mackup config file to the home directory
 ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
