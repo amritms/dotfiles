@@ -2,6 +2,15 @@
 
 echo "Setting up your Mac..."
 
+# Hide "last login" line when starting a new terminal session
+touch $HOME/.hushlogin
+
+# Install zsh
+echo 'Install oh-my-zsh'
+echo '-----------------'
+rm -rf $HOME/.oh-my-zsh
+curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
 # Check for Homebrew and install if we don't have it
 if test ! $(which brew); then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -16,6 +25,10 @@ brew bundle
 brew install vim --with-override-system-vi
 # Remove outdated versions from the cellar.
 brew cleanup
+
+# Add global gitignore
+ln -s $HOME/.dotfiles/shell/.global-gitignore $HOME/.global-gitignore
+git config --global core.excludesfile $HOME/.global-gitignore
 
 # Set default MySQL root password and auth type.
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
@@ -48,6 +61,10 @@ rm -rf $HOME/.zshrc
 ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 ln -s $HOME/.dotfiles/.tmux.config $HOME/.tmux.config
 
+#!/bin/bash
+
+# Hide "last login" line when starting a new terminal session
+touch $HOME/.hushlogin
 
 # Symlink the Mackup config file to the home directory
 ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
