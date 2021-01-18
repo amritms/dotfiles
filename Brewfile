@@ -19,7 +19,7 @@ brew 'hub'
 brew 'mackup'
 brew 'mas' # Mac App Store manager
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
-brew 'stripe'
+brew 'stripe/stripe-cli/stripe'
 brew 'trash' # Manage the Trash bin
 brew 'tree' # List directories in a tree structure
 brew 'zlib' # Needed for Memcached
@@ -80,7 +80,6 @@ cask 'visual-studio-code'
 cask 'virtualbox'
 cask 'virtualbox-extension-pack'
 cask 'vlc'
-cask 'whatsapp'
 
 # Quicklook
 cask 'qlcolorcode'
