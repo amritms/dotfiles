@@ -1,5 +1,5 @@
 # Shortcuts
-alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
+alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
 alias reloadshell="source $HOME/.zshrc"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias ll="/usr/local/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
@@ -26,9 +26,9 @@ alias p="./vendor/bin/phpunit"
 alias pf="./vendor/bin/phpunit --filter"
 
 # PHP
-alias cfresh="rm -rf vendor/ composer.lock && composer i"
-alias php74="docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint php --rm registry.gitlab.com/grahamcampbell/php:7.4"
-alias php8="docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint php --rm registry.gitlab.com/grahamcampbell/php:8.0"
+#alias cfresh="rm -rf vendor/ composer.lock && composer i"
+alias phpi81="docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint php --rm registry.gitlab.com/grahamcampbell/php:8.1"
+alias php82="docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint php --rm registry.gitlab.com/grahamcampbell/php:8.2"
 alias composer="php -d memory_limit=-1 /usr/local/bin/composer"
 
 # JS
@@ -41,6 +41,10 @@ alias docker-composer="docker-compose"
 
 # Git
 alias gs="git status"
+alias gcm="git commit -m "
+alias gpo="git pushup"
+alias gpof="gpo -f"
+alias gcane="git commit --amend --no-edit"
 alias gst="git status"
 alias gb="git branch"
 alias gc="git checkout"
@@ -89,7 +93,7 @@ function fixMacUsedFile(){
 }
 
 #React native
-alias rncache="watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && npm cache clean && npm install && npm start -- --reset-cache"
+#alias rncache="watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && npm cache clean && npm install && npm start -- --reset-cache"
 
 # Databases
 alias mysqlstart="cd $HOME/Projects/mysql8 && docker-compose up -d && cd -"
@@ -104,3 +108,33 @@ function cala(){
     php artisan serve
    # cd -
 }
+
+# All the dig info
+function digga() {
+        dig +nocmd "$1" any +multiline +noall +answer
+}
+
+# Docker
+function ssh-docker() {
+   docker exec -it "$@" bash
+}
+
+function weather() {
+   city="$1"
+
+   if [ -z "$city" ]; then
+      city="Toronto"
+   fi
+
+   eval "curl http://wttr.in/${city}"
+}
+
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# IP addresses
+alias ip="curl https://diagnostic.opendns.com/myip ; echo"
+alias localip="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
