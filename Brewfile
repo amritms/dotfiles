@@ -10,6 +10,7 @@ brew 'bash' # Latest Bash version
 #brew 'bat' # Used for spatie/visit
 brew 'coreutils' # Those that come with macOS are outdated
 brew 'ffmpeg'
+brew 'fzf'
 brew 'gh'
 brew 'git'
 brew 'grep'

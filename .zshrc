@@ -1,16 +1,6 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-#zmodload zsh/zprof # top of your .zshrc file
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # for homebrew auto completion
@@ -18,19 +8,16 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
+fi
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="minimal"
 
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHORTEN_DELIMITER=""
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
@@ -82,10 +69,6 @@ plugins=(
   git artisan extract zsh-autosuggestions zsh-syntax-highlighting
 )
 
-
-source $ZSH/oh-my-zsh.sh
-#. ~/z.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -112,10 +95,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.aliases
-#source ~/.bash_alias
+
 export PATH="/usr/local/opt/zip/bin:$PATH"
 
 
@@ -155,10 +136,6 @@ export PATH="/Users/driesvints/Library/Application Support/Herd/bin/":$PATH
 
 #zprof # bottom of .zshrc
 
-POWERLEVEL9K_IGNORE_TERM_COLORS=true
-#export PATH="/usr/local/opt/icu4c/bin:$PATH"
-#export PATH="/usr/local/opt/icu4c/sbin:$PATH"
-
 #React Native
 #alias rni="kill $(lsof -t -i:8081); rm -rf ios/build/; react-native run-ios"
 
@@ -174,5 +151,25 @@ export HERD_PHP_83_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Suppor
 # Herd injected PHP binary.
 export PATH="/Users/amritshrestha/Library/Application Support/Herd/bin/":$PATH
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+#HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+#setopt hist_ignore_all_dups
+#setopt hist_save_no_dups
+#setopt hist_ignore_dups
+#setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+
+# Shell integrations
+eval "$(fzf --zsh)"

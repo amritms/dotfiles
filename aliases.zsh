@@ -42,6 +42,7 @@ alias docker-composer="docker-compose"
 # Git
 alias gs="git status"
 alias gcm="git commit -m "
+alias gaa="git add ."
 alias gpo="git pushup"
 alias gpof="gpo -f"
 alias gcane="git commit --amend --no-edit"
@@ -85,7 +86,7 @@ alias cd..="cd .."
 
 function mkcd ()
 {
-  take "$a"
+  mkdir -p "$1" && cd "$1";
 }
 
 function fixMacUsedFile(){
