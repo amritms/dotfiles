@@ -9,7 +9,7 @@ if type brew &>/dev/null; then
 fi
 
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
+  eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/omp-zen.json)"
 fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
