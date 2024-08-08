@@ -15,6 +15,9 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     git clone https://github.com/zdharma-continuum/zinit "$ZINIT_HOME"
 fi
 
+# Oh-my-posh initialization
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/omp-zen.json)"
+
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit

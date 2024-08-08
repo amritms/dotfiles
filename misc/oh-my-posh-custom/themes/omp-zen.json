@@ -32,7 +32,6 @@
             "commit_icon": "@"            
           }
         }
-
       ],
       "type": "prompt"
     },
@@ -51,28 +50,18 @@
           "type": "node"
         },
         {
+          "type": "php",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "#ffffff",
+          "background": "#4063D8",
+          "template": "  {{ .Full }} "
+        },
+        {
           "foreground": "#FFE873",
           "style": "plain",
           "template": "<#ffffff>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}<#ffffff>)</>",
           "type": "python"
-        },
-        {
-          "foreground": "#06aad5",
-          "style": "plain",
-          "template": "<#ffffff>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<#ffffff>)</>",
-          "type": "go"
-        },
-        {
-          "foreground": "#925837",
-          "style": "plain",
-          "template": "<#ffffff>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<#ffffff>)</>",
-          "type": "rust"
-        },
-        {
-          "foreground": "#055b9c",
-          "style": "plain",
-          "template": "<#ffffff>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<#ffffff>)</>",
-          "type": "dart"
         },
         {
           "foreground": "#ce092f",
@@ -122,7 +111,7 @@
       "segments": [
         {
           "foreground": "magenta",
-          "foreground_templates": ["{{ if gt .Code 0 }}#ef5350{{ end }}"],
+          "foreground_templates": ["{{ if gt .Code 0 }}red{{ end }}"],
           "properties": {
             "always_enabled": true
           },
