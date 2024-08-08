@@ -7,7 +7,6 @@
 # Binaries
 brew 'awscli'
 brew 'bash' # Latest Bash version
-#brew 'bat' # Used for spatie/visit
 brew 'coreutils' # Those that come with macOS are outdated
 brew 'ffmpeg'
 brew 'fzf'
@@ -15,12 +14,10 @@ brew 'gh'
 brew 'git'
 brew 'grep'
 brew 'httpie'
-brew 'jq' # Used for spatie/visit
 #brew 'hub' # github
 brew 'mackup'
 brew 'mas' # Mac App Store manager
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
-#brew 'stripe/stripe-cli/stripe'
 brew 'trash' # Manage the Trash bin
 brew 'tree' # List directories in a tree structure
 #brew 'zlib' # Needed for Memcached
