@@ -15,9 +15,13 @@ if test ! $(which brew); then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+# Add global gitignore
+ln -s $HOME/.dotfiles/shell/.global-gitignore $HOME/.global-gitignore
+git config --global core.excludesfile $HOME/.global-gitignore
+
 # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
 rm -rf $HOME/.zshrc
-ln -sw $HOME/.dotfiles/.zshrc $HOME/.zshrc
+ln -sw $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
 
 # Update Homebrew recipes
 brew update
@@ -41,10 +45,22 @@ mkdir $HOME/Code/laravel
 ./clone.sh
 
 # Symlink the Mackup config file to the home directory
-ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
+ln -s $HOME/.dotfiles/macos/.mackup.cfg $HOME/.mackup.cfg
 
 
-# Symlink the aliases file to tht home directory
-ln -s $HOME/.dotfiles/aliases.zsh $HOME/.aliases
+# Symlink the aliases file to the home directory
+# ln -s $HOME/.dotfiles/shell/aliases $HOME/.aliases
+
 # Set macOS preferences - we will run this last because this will reload the shell
-source ./.macos
+source ./macos/.macos.sh
+
+
+echo '++++++++++++++++++++++++++++++'
+echo 'Some optional tidbits'
+
+echo '1. Make sure dropbox is running first. If you have not backed up via Mackup yet, then run `mackup backup` to symlink preferences for a wide collection of apps to your dropbox. If you already had a backup via mackup run `mackup restore` You'\''ll find more info on Mackup here: https://github.com/lra/mackup.'
+echo '2. Set some sensible os x defaults by running: $HOME/.dotfiles/macos/set-defaults.sh'
+echo '3. Make a .dotfiles-custom/shell/.aliases for your personal commands'
+
+echo '++++++++++++++++++++++++++++++'
+echo '++++++++++++++++++++++++++++++'

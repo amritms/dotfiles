@@ -45,17 +45,6 @@ function phpserver() {
 	php -S "${ip}:${port}"
 }
 
-
-function weather() {
-   city="$1"
-
-   if [ -z "$city" ]; then
-      city="Toronto"
-   fi
-
-   eval "curl http://wttr.in/${city}"
-}
-
 alias mysqladm='mysql -u root'
 
 # Scrape a single webpage with all assets
@@ -63,6 +52,7 @@ function scrapeUrl() {
     wget --adjust-extension --convert-links --page-requisites --span-hosts --no-host-directories "$1"
 }
 
+# Instant Upgrades and Automated Refactoring of any PHP 5.3+ code 
 function rector() {
    docker run -v $(pwd):/project rector/rector:latest process /project/$1 --set php80 --autoload-file /project/vendor/autoload.php 
 }
@@ -132,3 +122,49 @@ function silent() {
    "$@" >& /dev/null
 }
 
+
+function fixMacUsedFile(){
+ SetFile -c "" -t "" "$1"
+}
+
+get_work_branch () {
+	ref=$(git symbolic-ref -q HEAD) \
+	|| report_soft_error "git-wip requires a branch"
+
+
+	branch=${ref#refs/heads/}
+	if [ $branch = $ref ] ; then
+		die "git-wip requires a local branch"
+	fi
+
+	echo $branch
+}
+
+
+function cala(){
+    mysqlstart
+    cd "$HOME/Projects/Calibre/calibre_laravel"
+    php artisan serve
+   # cd -
+}
+
+# All the dig info
+function digga() {
+        dig +nocmd "$1" any +multiline +noall +answer
+}
+
+
+
+function ssh-docker() {
+   docker exec -it "$@" bash
+}
+
+function weather() {
+   city="$1"
+
+   if [ -z "$city" ]; then
+      city="Toronto"
+   fi
+
+   eval "curl http://wttr.in/${city}"
+}

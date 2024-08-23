@@ -1,0 +1,36 @@
+# Make vim the default editor
+export EDITOR="vim"
+
+# History
+export HISTSIZE=10000
+export HISTFILE=~/.zsh_history
+export SAVEHIST=$HISTSIZE
+#export HISTDUP=erase
+export setopt appendhistory
+export setopt sharehistory
+export setopt hist_ignore_space
+#export setopt hist_ignore_all_dups
+#export setopt hist_save_no_dups
+#export setopt hist_ignore_dups
+#export setopt hist_find_no_dups
+# Make some commands not show up in history
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+# And include the parameter for ZSH
+export HISTORY_IGNORE="(ls|cd|cd -|pwd|exit|date|* --help)"
+
+
+# Prefer US English and use UTF-8
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+# Highlight section titles in manual pages
+export LESS_TERMCAP_md="$ORANGE"
+
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -X"
+
+# Always enable colored `grep` output
+export GREP_OPTIONS="--color=auto"
+
+# Do not auto update brew
+export HOMEBREW_NO_AUTO_UPDATE=1

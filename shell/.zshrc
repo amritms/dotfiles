@@ -59,18 +59,6 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
-# History
-HISTSIZE=10000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-#HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-#setopt hist_ignore_all_dups
-#setopt hist_save_no_dups
-#setopt hist_ignore_dups
-#setopt hist_find_no_dups
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -78,12 +66,16 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
-# Aliases
-alias ls='ls --color'
-alias vim="nvim"
-alias vimdiff="nvim -d"
+# Load the shell dotfiles, and then some:
+# * ~/.dotfiles-custom can be used for other settings you don’t want to commit.
+for file in ~/.dotfiles/shell/.{exports,aliases,functions,path}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
 
-source ~/.aliases
+for file in ~/.dotfiles-custom/shell/.{exports,aliases,functions,zshrc}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
 
 
 export PATH="/usr/local/opt/zip/bin:$PATH"
@@ -123,6 +115,9 @@ export PATH="/Users/driesvints/Library/Application Support/Herd/bin/":$PATH
 
 # Herd injected PHP 8.3 configuration.
 export HERD_PHP_83_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/83/"
+
+# Herd injected PHP binary.
+export PATH="/Users/amritshrestha/Library/Application Support/Herd/bin/":$PATH
 
 # Herd injected PHP binary.
 export PATH="/Users/amritshrestha/Library/Application Support/Herd/bin/":$PATH
