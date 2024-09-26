@@ -49,7 +49,7 @@ ln -s $HOME/.dotfiles/macos/.mackup.cfg $HOME/.mackup.cfg
 
 
 # Symlink the aliases file to the home directory
-# ln -s $HOME/.dotfiles/shell/aliases $HOME/.aliases
+# aliases and custom-aliases are sourced directly from .dotfiles from ~/.zshrc
 
 # Set macOS preferences - we will run this last because this will reload the shell
 source ./macos/.macos.sh
@@ -59,8 +59,7 @@ echo '++++++++++++++++++++++++++++++'
 echo 'Some optional tidbits'
 
 echo '1. Make sure dropbox is running first. If you have not backed up via Mackup yet, then run `mackup backup` to symlink preferences for a wide collection of apps to your dropbox. If you already had a backup via mackup run `mackup restore` You'\''ll find more info on Mackup here: https://github.com/lra/mackup.'
-echo '2. Set some sensible os x defaults by running: $HOME/.dotfiles/macos/set-defaults.sh'
-echo '3. Make a .dotfiles-custom/shell/.aliases for your personal commands'
+echo '2. Make a ~/.dotfiles-custom/shell/.aliases for your personal commands'
 
 echo '++++++++++++++++++++++++++++++'
 echo '++++++++++++++++++++++++++++++'
