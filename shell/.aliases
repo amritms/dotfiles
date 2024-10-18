@@ -110,5 +110,6 @@ alias touchbar="killall ControlStrip"
 
 # Aliases
 alias ls='ls --color'
+alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
