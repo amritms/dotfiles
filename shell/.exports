@@ -17,7 +17,7 @@ export setopt hist_ignore_space
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 # And include the parameter for ZSH
 export HISTORY_IGNORE="(ls|cd|cd -|pwd|exit|date|* --help)"
-HISTTIMEFORMAT="%F %T "        # for e.g. “1999-02-29 23:59:59”
+export HISTTIMEFORMAT="%F %T "        # for e.g. “1999-02-29 23:59:59”
 
 
 # Prefer US English and use UTF-8
