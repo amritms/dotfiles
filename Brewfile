@@ -1,3 +1,7 @@
+# Taps
+tap 'homebrew/cask-fonts'
+tap 'homebrew/cask-versions'
+
 # Binaries
 brew 'awscli'
 brew 'bash' # Latest Bash version
@@ -49,7 +53,7 @@ cask 'keka'
 cask 'phpstorm'
 cask 'qbittorrent'
 cask 'raycast'
-cask 'rectangle' # Move and resize windows using keyboard shortcuts or snap areas
+# cask 'rectangle' # Move and resize windows using keyboard shortcuts or snap areas
 cask 'sequel-ace'
 cask 'skype'
 cask 'slack'

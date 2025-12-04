@@ -1,150 +1,183 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "transient_prompt": {
+    "template": "❯ ",
+    "background": "transparent",
+    "foreground_templates": [
+      "{{if gt .Code 0}}red{{end}}",
+      "{{if eq .Code 0}}magenta{{end}}"
+    ]
+  },
   "blocks": [
     {
+      "type": "prompt",
       "alignment": "left",
-      "newline": true,
       "segments": [
         {
-          "style": "plain",
-          "foreground": "magenta",
+          "properties": {
+            "cache_duration": "none"
+          },
           "template": "\u256d\u2500<#00C7FC>{{ .UserName }}@{{ .HostName }}</> ",
-          "type": "session"
+          "foreground": "magenta",
+          "type": "session",
+          "style": "plain"
         },
         {
-          "foreground": "#B6D6F2",
-          "style": "plain",
-          "template": "{{ .Path }}",
-          "type": "path",
           "properties": {
+            "cache_duration": "none",
             "style": "agnoster_full"
-          }
+          },
+          "template": "{{ .Path }}",
+          "foreground": "#B6D6F2",
+          "type": "path",
+          "style": "plain"
         },
         {
-          "type": "git",
-          "style": "plain",
-          "background": "transparent",
-          "template": " {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>",
           "properties": {
-            "fetch_status": true,
-            "fetch_upstream_icon": true,
             "branch_icon": "",
-            "commit_icon": "@"            
-          }
+            "cache_duration": "none",
+            "commit_icon": "@",
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "template": " {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}\u21e3{{ end }}{{ if gt .Ahead 0 }}\u21e1{{ end }}</>",
+          "background": "transparent",
+          "type": "git",
+          "style": "plain"
         }
       ],
-      "type": "prompt"
+      "newline": true
     },
     {
+      "type": "prompt",
       "alignment": "right",
       "segments": [
         {
-          "foreground": "#3C873A",
           "properties": {
+            "cache_duration": "none",
             "fetch_package_manager": true,
             "npm_icon": " <#cc3a3a>\ue5fa</> ",
             "yarn_icon": " <#348cba>\ue6a7</>"
           },
-          "style": "plain",
           "template": "<#ffffff>(</>{{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}<#ffffff>)</>",
-          "type": "node"
+          "foreground": "#3C873A",
+          "type": "node",
+          "style": "plain"
         },
         {
-          "type": "php",
-          "style": "powerline",
-          "powerline_symbol": "",
-          "foreground": "#ffffff",
-          "background": "#4063D8",
-          "template": "  {{ .Full }} "
-        },
-        {
-          "foreground": "#FFE873",
-          "style": "plain",
-          "template": "<#ffffff>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}<#ffffff>)</>",
-          "type": "python"
-        },
-        {
-          "foreground": "#ce092f",
-          "style": "plain",
-          "template": "<#ffffff>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<#ffffff>)</>",
-          "type": "angular"
-        },
-        {
-          "foreground": "#ffffff",
-          "style": "plain",
-          "template": "<#1e293b>(</>{{ if .Error }}{{ .Error }}{{ else }}Nx {{ .Full }}{{ end }}<#1e293b>)</>",
-          "type": "nx"
-        },
-        {
-          "foreground": "#5398c2",
-          "style": "plain",
-          "template": "<#ffffff>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<#ffffff>)</>",
-          "type": "azfunc"
-        },
-        {
-          "foreground": "#faa029",
-          "style": "plain",
-          "template": "<#ffffff>(</>{{.Profile}}{{if .Region}}@{{.Region}}{{end}}<#ffffff>)</>",
-          "type": "aws"
-        },
-        {
-          "foreground": "#316ce4",
-          "style": "plain",
-          "template": "<#ffffff>(</>{{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}<#ffffff>)</>",
-          "type": "kubectl"
-        },
-        {
-          "foreground": "darkGray",
           "properties": {
+            "cache_duration": "none"
+          },
+          "template": " \ue73d {{ .Full }} ",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "background": "#4063D8",
+          "type": "php",
+          "style": "powerline"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<#ffffff>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}<#ffffff>)</>",
+          "foreground": "#FFE873",
+          "type": "python",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<#ffffff>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<#ffffff>)</>",
+          "foreground": "#ce092f",
+          "type": "angular",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<#1e293b>(</>{{ if .Error }}{{ .Error }}{{ else }}Nx {{ .Full }}{{ end }}<#1e293b>)</>",
+          "foreground": "#ffffff",
+          "type": "nx",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<#ffffff>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<#ffffff>)</>",
+          "foreground": "#5398c2",
+          "type": "azfunc",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<#ffffff>(</>{{.Profile}}{{if .Region}}@{{.Region}}{{end}}<#ffffff>)</>",
+          "foreground": "#faa029",
+          "type": "aws",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<#ffffff>(</>{{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}<#ffffff>)</>",
+          "foreground": "#316ce4",
+          "type": "kubectl",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
             "time_format": "15:04:05"
           },
-          "style": "plain",
           "template": "{{ .CurrentDate | date .Format }}",
-          "type": "time"
+          "foreground": "darkGray",
+          "type": "time",
+          "style": "plain"
         }
-      ],
-      "type": "prompt"
+      ]
     },
     {
+      "type": "prompt",
       "alignment": "left",
-      "newline": true,
       "segments": [
         {
-          "foreground": "magenta",
-          "foreground_templates": ["{{ if gt .Code 0 }}red{{ end }}"],
           "properties": {
-            "always_enabled": true
+            "always_enabled": true,
+            "cache_duration": "none"
           },
+          "template": "\u2570\u2500❯ ",
+          "foreground": "magenta",
+          "type": "status",
           "style": "plain",
-          "template": "\u2570\u2500\u276f ",
-          "type": "status"
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}red{{ end }}"
+          ]
         }
       ],
-      "type": "prompt"
+      "newline": true
     },
     {
-        "type": "rprompt",
-        "overflow": "hidden",
-        "segments": [{
-            "type": "executiontime",
-            "style": "plain",
-            "foreground": "yellow",
-            "background": "transparent",
-            "template": "{{ .FormattedMs}}",
-            "properties": {
-          "threshold": 5000
+      "type": "rprompt",
+      "overflow": "hidden",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none",
+            "threshold": 5000
+          },
+          "template": "{{ .FormattedMs}}",
+          "foreground": "yellow",
+          "background": "transparent",
+          "type": "executiontime",
+          "style": "plain"
         }
-      }
       ]
-  }
+    }
   ],
-  "transient_prompt": {
-    "background":"transparent",
-    "template": "❯ ",
-        "foreground_templates": [
-          "{{if gt .Code 0}}red{{end}}",
-          "{{if eq .Code 0}}magenta{{end}}"
-        ]
-    },
-  "version": 2
+  "version": 3
 }

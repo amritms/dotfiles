@@ -1,5 +1,7 @@
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH=$HOME/development/flutter/bin:$PATH
+export JAVA_HOME="$(brew --prefix openjdk@17)"
 
 # for homebrew auto completion
 if type brew &>/dev/null; then
@@ -121,3 +123,24 @@ export PATH="/Users/amritshrestha/Library/Application Support/Herd/bin/":$PATH
 
 # Herd injected PHP binary.
 export PATH="/Users/amritshrestha/Library/Application Support/Herd/bin/":$PATH
+
+# Created by `pipx` on 2024-10-23 23:50:09
+export PATH="$PATH:/Users/amritshrestha/.local/bin"
+
+alias cursorpersonal='/Applications/Cursor_Personal.app/Contents/MacOS/Cursor --user-data-dir=$HOME/.cursor-profile-2 --extensions-dir=$HOME/.cursor-profile-2/extensions'
+
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/82/"
+
+
+# Herd injected PHP 8.5 configuration.
+export HERD_PHP_85_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/85/"
+
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/84/"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Added by Antigravity
+export PATH="/Users/amritshrestha/.antigravity/antigravity/bin:$PATH"
