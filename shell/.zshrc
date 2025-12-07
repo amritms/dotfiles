@@ -1,6 +1,6 @@
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="/opt/homebrew/bin:$PATH"
-export PATH=$HOME/development/flutter/bin:$PATH
+#export PATH=$HOME/development/flutter/bin:$PATH
 export JAVA_HOME="$(brew --prefix openjdk@17)"
 
 # for homebrew auto completion
@@ -63,9 +63,9 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 
 
 # Completion styling
+zstyle ':completion:*' menu select # tab opens cmp menu
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS} ma=0\;33" # colorize cmp menu
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # Load the shell dotfiles, and then some:

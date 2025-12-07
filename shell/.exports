@@ -2,20 +2,34 @@
 export EDITOR="vim"
 
 # History
-export HISTSIZE=50000
+export HISTSIZE=1000000
 export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
 export HISTSIZE=$HISTSIZE
 #export HISTDUP=erase
+export HISTCONTROL=ignoreboth # consecutive duplicates & commands starting with space are not saved
 
 # when shell stops -> then do
 #export setopt appendhistory
 #export setopt sharehistory
 
-# After each command, append to the history file and reread it
+export append_history inc_append_history share_history # better history
+# on exit, history appends rather than overwrites; history is appended as soon as cmds eecuted; history shared across sessions sessions
+export setopt auto_menu autocmplete # autocmp first menu match
+setopt autocd # type a dir to cd
+setopt auto_param_slash # when a dir is completed, add a / instead of a trailing space
+setopt no_case_glob no_case_match # make cmp case insensitive 
+setopt globdots # include dotfiles
+setopt extended_glob # match ~ # ^
+setopt interactive_comments # allow comments in the shell
+setopt prompt_sp # don't autoclean blanklines
+
+
+
+
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
-export setopt CORRECT
+export setopt correct # correct
 
 export EXTENDED_HISTORY
 export setopt hist_ignore_space
@@ -36,11 +50,19 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-# Highlight section titles in manual pages
-export LESS_TERMCAP_md="$ORANGE"
+# colored less + termcap vars
+export LESS="R --use-color -Dd"
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
+export LESS_TERMCAP_me="$(printf '%b' '[0m')"
+export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
+export LESS_TERMCAP_se="$(printf '%b' '[0m')"
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
+
 
 # Don’t clear the screen after quitting a manual page
-export MANPAGER="less -X"
+export MANPAGER="less -X -R --use-color -Dd+r -Du+b" # colored manual pages
 
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto"
