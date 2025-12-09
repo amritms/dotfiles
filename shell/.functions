@@ -168,3 +168,11 @@ function weather() {
 
    eval "curl http://wttr.in/${city}"
 }
+# Safe nuke function
+function nuke() {
+    echo "⚠️  WARNING: This will permanently delete all untracked files and reset changes."
+    read "reply?Are you sure? [y/N] "
+    if [[ "$reply" =~ ^[Yy]$ ]]; then
+       git clean -df && git reset --hard
+    fi
+}
