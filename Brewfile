@@ -55,6 +55,8 @@ cask "dash" # API documentation reader
 cask 'docker' # Docker
 cask 'filezilla' # free FTP client
 cask 'firefox@developer-edition' # Firefox Developer Edition
+cask 'font-fira-code'
+cask 'font-fira-code-nerd-font'
 cask "ghostty" # Better terminal emulator
 cask 'google-backup-and-sync' # Google Backup and Sync
 cask 'google-chrome' # Google Chrome
@@ -66,7 +68,7 @@ cask 'insomnia' # Insomnia
 cask 'iterm2' # iTerm2
 cask "itsycal" # Tiny popup calendar in a menu bar
 cask 'jordanbaird-ice' # free alternative to bartender
-cask 'keka'
+cask 'keka' # free alternative to zip
 cask "marta" # File manager
 cask "notion" # Collaborative note taking app
 cask "obsidian" # Main note taking app
