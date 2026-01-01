@@ -5,11 +5,13 @@ alias pstorm='open -a /Applications/PhpStorm.app "`pwd`"'
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias c="clear"
 
-# AliasesA
+# Aliases
 alias ls='ls --color'
 alias vi="vim"
 #alias vim="nvim"
 alias vimdiff="nvim -d"
+
+alias history="fc -li 1" # shows time in history
 
 # Directories
 alias dotfiles="cd $DOTFILES"
