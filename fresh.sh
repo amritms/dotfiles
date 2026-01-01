@@ -1,10 +1,12 @@
-#!/bin/sh
+#!/bin/bash
+
+set -euo pipefail
 
 echo "Setting up your Mac..."
 
 # Check for Oh My Zsh and install if we don't have it
 if test ! $(which omz); then
-  /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
 fi
 
 # Check for Homebrew and install if we don't have it
@@ -16,19 +18,30 @@ if test ! $(which brew); then
 fi
 
 # Add global gitignore
-ln -s $HOME/.dotfiles/.gitignore_global $HOME/.gitignore_global
+ln -s $HOME/.dotfiles/tilde/.gitignore_global $HOME/.gitignore_global
 git config --global core.excludesfile $HOME/.gitignore_global
 
-# Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
-rm -rf $HOME/.zshrc
-ln -sw $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
+# Backup existing zsh file
+if [[ -e "$HOME/.zshrc" ]]; then
+  mv "$HOME/.zshrc" "$HOME/.zshrc.backup"
+fi
+
+# symlinks the .zshrc file from the .dotfiles
+ln -sw $HOME/.dotfiles/tilde/.zshrc $HOME/.zshrc
+
+# Use Touch ID to authorize sudo
+if [ ! -f /etc/pam.d/sudo_local ]; then
+  echo "Enabling Touch ID to authorize sudo commands"
+  echo "auth       sufficient     pam_tid.so" | sudo tee /etc/pam.d/sudo_local
+fi
 
 # Update Homebrew recipes
 brew update
 
 # Install all our dependencies with bundle (See Brewfile)
+title "Installing software…"
 brew tap homebrew/bundle
-brew bundle --file ./Brewfile
+brew bundle --file $HOME/.dotfiles/Brewfile
 
 # Set default MySQL root password and auth type
 #mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
@@ -59,7 +72,7 @@ echo '++++++++++++++++++++++++++++++'
 echo 'Some optional tidbits'
 
 echo '1. Make sure dropbox is running first. If you have not backed up via Mackup yet, then run `mackup backup` to symlink preferences for a wide collection of apps to your dropbox. If you already had a backup via mackup run `mackup restore` You'\''ll find more info on Mackup here: https://github.com/lra/mackup.'
-echo '2. Make a ~/.dotfiles-custom/shell/.aliases for your personal commands'
+echo '2. Make a ~/.dotfiles-custom/tilde/.aliases for your personal commands'
 
 echo '++++++++++++++++++++++++++++++'
 echo '++++++++++++++++++++++++++++++'

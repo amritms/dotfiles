@@ -1,7 +1,15 @@
+# Path to your dotfiles
+export DOTFILES=$HOME/.dotfiles
+
+# Path to your oh-my-zsh installation
+export ZSH=$HOME/.oh-my-zsh
+
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="/opt/homebrew/bin:$PATH"
 #export PATH=$HOME/development/flutter/bin:$PATH
 export JAVA_HOME="$(brew --prefix openjdk@17)"
+
+HIST_STAMPS="%F %T"
 
 # for homebrew auto completion
 if type brew &>/dev/null; then
@@ -25,8 +33,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-#zinit ice depty=1; zinit light romkatv/powerlvel10k
-
+# a popular alternative to oh-my-posh
+# zinit ice depty=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -60,21 +68,24 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
-
+bindkey "^[b" backward-word
+bindkey "^[f" forward-word
+bindkey "^[[1;5D" backward-word  # Option + Left Arrow
+bindkey "^[[1;5C" forward-word   # Option + Right Arrow
 
 # Completion styling
 zstyle ':completion:*' menu select # tab opens cmp menu
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS} ma=0\;33" # colorize cmp menu
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # Load the shell dotfiles, and then some:
 # * ~/.dotfiles-custom can be used for other settings you don’t want to commit.
-for file in ~/.dotfiles/shell/.{exports,aliases,functions,path}; do
+for file in ~/.dotfiles/zsh/.{exports,aliases,functions,path}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 
-for file in ~/.dotfiles-custom/shell/.{exports,aliases,functions,zshrc}; do
+for file in ~/.dotfiles-custom/zsh/.{exports,aliases,functions,zshrc}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
@@ -84,7 +95,6 @@ export PATH="/usr/local/opt/zip/bin:$PATH"
 
 # Shell integrations
 eval "$(fzf --zsh)" # fuzzy search on z-shell
-
 
 
 # Herd injected PHP binary.
@@ -98,22 +108,22 @@ export NVM_DIR="$HOME/Library/Application Support/Herd/config/nvm"
 [[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
 
 # Herd injected PHP 7.4 configuration.
-export HERD_PHP_74_INI_SCAN_DIR="/Users/driesvints/Library/Application Support/Herd/config/php/74/"
+export HERD_PHP_74_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/74/"
 
 # Herd injected PHP 8.3 configuration.
-export HERD_PHP_83_INI_SCAN_DIR="/Users/driesvints/Library/Application Support/Herd/config/php/83/"
+export HERD_PHP_83_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/83/"
 
 # Herd injected PHP 8.2 configuration.
-export HERD_PHP_82_INI_SCAN_DIR="/Users/driesvints/Library/Application Support/Herd/config/php/82/"
+export HERD_PHP_82_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/82/"
 
 # Herd injected PHP 8.1 configuration.
-export HERD_PHP_81_INI_SCAN_DIR="/Users/driesvints/Library/Application Support/Herd/config/php/81/"
+export HERD_PHP_81_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/81/"
 
 # Herd injected PHP 8.0 configuration.
-export HERD_PHP_80_INI_SCAN_DIR="/Users/driesvints/Library/Application Support/Herd/config/php/80/"
+export HERD_PHP_80_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/80/"
 
 # Herd injected PHP binary.
-export PATH="/Users/driesvints/Library/Application Support/Herd/bin/":$PATH
+export PATH="/Users/amritshrestha/Library/Application Support/Herd/bin/":$PATH
 
 # Herd injected PHP 8.3 configuration.
 export HERD_PHP_83_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/83/"
@@ -144,3 +154,4 @@ export HERD_PHP_84_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/p
 
 # Added by Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+

@@ -5,6 +5,12 @@ alias pstorm='open -a /Applications/PhpStorm.app "`pwd`"'
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias c="clear"
 
+# AliasesA
+alias ls='ls --color'
+alias vi="vim"
+#alias vim="nvim"
+alias vimdiff="nvim -d"
+
 # Directories
 alias dotfiles="cd $DOTFILES"
 alias library="cd $HOME/Library"
@@ -84,11 +90,6 @@ alias psqlstop="cd $HOME/Projects/postgres && docker-compose down && cd -"
 alias dcu="docker compose up"
 alias dcud="dcu -d"
 
-
-# Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-
 # IP addresses
 alias ip="curl https://myipv4.p1.opendns.com/get_my_ip ; echo"
 alias localip="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
@@ -97,8 +98,38 @@ alias localip="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{
 alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias reloaddns="flushdns"
 
+
+#
+# Built-ins upgrades
+#
+command_exists() {
+  command -v "$@" &> /dev/null
+}
+
+# Bat: https://github.com/sharkdp/bat
+command_exists bat && alias cat="bat --style=plain"
+
+# Btop: https://github.com/aristocratos/btop
+command_exists btop && alias top="btop"
+
+# Tlrc: https://github.com/tldr-pages/tlrc
+command_exists tldr && alias man="tldr --config ~/.tlrc.toml"
+
+
 # Lock the screen
 alias afk="osascript -e 'tell application \"System Events\" to keystroke \"q\" using {command down,control down}'"
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# System
+alias shutdownmac="sudo shutdown -h now"
+alias restartmac="sudo shutdown -r now"
+
+# Show/hide all desktop icons (useful when presenting)
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 
 # Empty the Trash on all mounted volumes and the main HDD
 # Also, clear Apple’s System Logs to improve shell startup speed
@@ -106,9 +137,3 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 
 # Restart touch bar
 alias touchbar="killall ControlStrip"
-
-# Aliases
-alias ls='ls --color'
-alias vi="nvim"
-alias vim="nvim"
-alias vimdiff="nvim -d"

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 echo "Cloning repositories..."
 
 SITES=$HOME/Projects

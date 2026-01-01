@@ -1,0 +1,51 @@
+# Make nvim the default editor
+export EDITOR="nvim"
+
+# History Configuration
+export HISTSIZE=1000000
+export HISTFILE=~/.zsh_history
+export SAVEHIST=$HISTSIZE
+export HISTCONTROL=ignoreboth
+
+# Zsh Options (Fixed syntax)
+setopt append_history
+setopt inc_append_history
+setopt share_history
+setopt auto_menu
+setopt auto_list
+setopt autocd
+setopt auto_param_slash
+setopt no_case_glob
+setopt no_case_match
+setopt globdots
+setopt extended_glob
+setopt interactive_comments
+setopt prompt_sp
+setopt correct
+setopt hist_ignore_space
+setopt EXTENDED_HISTORY
+
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
+# History Ignore Patterns
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+export HISTORY_IGNORE="(ls|cd|cd -|pwd|exit|date|* --help)"
+export HISTTIMEFORMAT="%F %T "
+
+# Environment
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+# Less Colors
+export LESS="R --use-color -Dd"
+export LESS_TERMCAP_mb=$(printf '%b' '[1;31m')
+export LESS_TERMCAP_md=$(printf '%b' '[1;36m')
+export LESS_TERMCAP_me=$(printf '%b' '[0m')
+export LESS_TERMCAP_so=$(printf '%b' '[01;44;33m')
+export LESS_TERMCAP_se=$(printf '%b' '[0m')
+export LESS_TERMCAP_us=$(printf '%b' '[1;32m')
+export LESS_TERMCAP_ue=$(printf '%b' '[0m')
+
+export MANPAGER="less -X -R --use-color -Dd+r -Du+b"
+export GREP_OPTIONS="--color=auto"
+export HOMEBREW_NO_AUTO_UPDATE=1
