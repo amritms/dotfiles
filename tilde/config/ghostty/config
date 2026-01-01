@@ -28,8 +28,11 @@
 # font-family = Iosevka
 # window-padding-x = 2
 
-config-file               = ~/.config/ghostty/keybinds
-theme                   = Adventure
+config-file             = ~/.config/ghostty/keybinds
+#theme                   = iTerm2 Solarized Dark
+theme                   = catppuccin-mocha
+font-size               = 16
+gtk-titlebar            = true
 gtk-tabs-location       = bottom
 scrollback-limit        = 20000
 window-theme            = system
