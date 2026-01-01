@@ -6,49 +6,49 @@ tap 'homebrew/cask-versions'
 brew 'awscli'
 brew 'bash' # Latest Bash version
 brew "bat" # Output highlighting (better `cat`)
+brew "betterzip" # Extract and view archives
 brew "btop" # Performance and resource monitoring tool (better `top`)
+brew 'composer' # PHP package manager
 brew 'coreutils' # Those that come with macOS are outdated
-brew 'ffmpeg'
-brew 'fzf'
+brew 'ffmpeg' # Video converter
+brew 'fzf' # Fuzzy finder
 brew 'gh' # GitHub CLI: interact with GitHub PRs, issues, repos
 brew 'git' # Version control
 brew "git-delta" # Diff pager for `git` and `grep` output (better `diff`)
-brew 'grep'
-brew 'httpie'
-#brew 'hub' # github
+brew 'grep' # Global regular expression print
+brew 'httpie' # HTTP client
+brew 'imagemagick' # Tools and libraries to manipulate images in many formats
 brew "jesseduffield/lazydocker/lazydocker" # Full Docker management app
 brew "lazyvim/lazyvim/lazyvim" # Full-featured Neovim distribution
-brew 'mackup'
+brew 'mackup' # Backup and restore your dotfiles
 brew 'mas' # Mac App Store manager
 brew "mpv" # Media player
-brew "neovim"
+brew "neovim" # Full-featured Neovim distribution
+brew 'node'
+brew 'npm'
+brew "oh-my-posh" # Customizable prompt for any shell
+brew 'php'
+brew 'php@8.2'
+brew 'php@8.3'
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
-#brew 'pug' # for maintaining multiple local git repo
 brew "ripgrep" # Searching within files (better `grep`)
+brew 'sqlite' # Database
+brew 'tailscale' # Easiest, most secure way to use WireGuard and 2FA
 brew "tlrc" # Community-maintained docs (better `man`)
 brew 'trash' # Manage the Trash bin
 brew "trash-cli", link: true # Record and restore removed files (better `rm`)
 brew 'tree' # List directories in a tree structure
-#brew 'zlib' # Needed for Memcached
+brew 'yarn' # JavaScript package manager
+brew "yt-dlp" # Download YouTube videos
 brew "zsh" # A shell of choice
 brew "zsh-autosuggestions" # Fish-like autosuggestions for Zsh
 brew "zsh-syntax-highlighting" # Fish-like syntax highlighting for Zsh
-brew "oh-my-posh" # Customizable prompt for any shell
+#brew 'zlib' # Needed for Memcached
 
-# Development
-brew 'composer'
-brew 'imagemagick'
-brew 'neovim'
-brew 'node'
-brew 'npm'
-brew 'php'
-brew 'php@8.2'
-brew 'php@8.3'
-brew 'sqlite'
-brew 'yarn'
 
 # GUI Apps
 cask 'alt-tab' # windows like preview for tab switcher
+cask 'balenaetcher' # Balena Etcher 
 cask 'bitwarden'
 cask "bruno" # Local-first API client
 cask "dash" # API documentation reader
@@ -58,7 +58,9 @@ cask 'firefox@developer-edition' # Firefox Developer Edition
 cask "ghostty" # Better terminal emulator
 cask 'google-backup-and-sync' # Google Backup and Sync
 cask 'google-chrome' # Google Chrome
-cask 'herd' # Herd
+cask 'handbrake' # Video converter
+cask 'headset' # Headset youtube player
+cask 'herd' # Laravel and PHP development environment manager
 cask 'imageoptim' # Image Optimizer
 cask 'insomnia' # Insomnia
 cask 'iterm2' # iTerm2
@@ -79,10 +81,11 @@ cask 'sublime-text'
 cask 'surfshark'
 cask "tableplus" # Database management system
 cask "telegram" # Messenger
-cask 'there'
-cask 'vlc'
+cask 'there' # Tool to display the local times of friends, teammates, cities or any time zone
+cask 'vlc' # Video player
 cask "visual-studio-code" # Main code editor
 cask "whatsapp" # Messenger
+
 
 # Mac App Store
 mas 'Amphetamine', id: 937984704
