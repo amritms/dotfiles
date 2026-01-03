@@ -29,8 +29,8 @@
 # window-padding-x = 2
 
 config-file             = ~/.config/ghostty/keybinds
-#theme                   = iTerm2 Solarized Dark
-theme                   = catppuccin-mocha
+#theme                  = iTerm2 Solarized Dark
+theme                   = Catppuccin Mocha
 font-size               = 16
 gtk-titlebar            = true
 gtk-tabs-location       = bottom
@@ -40,6 +40,10 @@ focus-follows-mouse     = true
 command                 = zsh
 window-padding-x        = 10,10
 window-padding-y        = 10,10
+
+keybind = global:cmd+backquote=toggle_quick_terminal
+
+
 # # Spacing around the equals sign does not matter.
 # # All of these are identical:
 # key=value
