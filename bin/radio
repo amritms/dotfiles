@@ -14,37 +14,44 @@
 
 set -euo pipefail
 
-if [ "$#" -eq 0 ]; then
-  echo "Usage: $(basename "$0") <genre>"
-  echo "Available genres: lofi, octave, salsa, mix, mellow, rock, world, general, hits, eurodance, 80s"
-  exit 1
+function show_usage {
+  echo "Usage: $(basename "$0") [GENRE]"
+  echo ""
+  echo "Available genres:"
+  echo "  lofi (default), octave, salsa, mix, mellow, rock,"
+  echo "  world, general, hits, eurodance, 80s"
+  echo ""
+  echo "Options:"
+  echo "  -h, --help    Show this help message"
+}
+
+# Default to lofi if no argument provided
+if [ -z "${1:-}" ]; then
+  show_usage
+  GENRE="lofi"
+else
+  GENRE="$1"
 fi
 
-if [ "$1" == lofi ]; then
-  url='https://live.hunter.fm/lofi_low'
-elif [ "$1" == octave ]; then
-  url='https://octaverecords.out.airtime.pro/octaverecords_b'
-elif [ "$1" == salsa ]; then
-  url='https://latinasalsa.ice.infomaniak.ch/latinasalsa.mp3'
-elif [ "$1" == mix ]; then
-  url='http://radio3.radio-calico.com:8080/calico'
-elif [ "$1" == mellow ]; then
-  url='https://stream.radioparadise.com/mellow-flacm'
-elif [ "$1" == rock ]; then
-  url='https://stream.radioparadise.com/rock-flacm'
-elif [ "$1" == world ]; then
-  url='https://stream.radioparadise.com/global-flacm'
-elif [ "$1" == general ]; then
-  url='https://stream.radioparadise.com/flacm'
-elif [ "$1" == hits ]; then
-  url='https://stream.joyhits.online:8072/joyhits.flac.ogg'
-elif [ "$1" == eurodance ]; then
-  url='https://stream.radioclub80.cl:8032/stream.euro80flac'
-elif [ "$1" == 80s ]; then
-  url='https://stream.radioclub80.cl:8002/clasicos80.flac'
-else
-  echo "Oops. I don't know \"$1\"." 1>&2
-  exit 1
-fi
+case "$GENRE" in
+  lofi)      url='https://live.hunter.fm/lofi_low' ;;
+  octave)    url='https://octaverecords.out.airtime.pro/octaverecords_b' ;;
+  salsa)     url='https://latinasalsa.ice.infomaniak.ch/latinasalsa.mp3' ;;
+  mix)       url='http://radio3.radio-calico.com:8080/calico' ;;
+  mellow)    url='https://stream.radioparadise.com/mellow-flacm' ;;
+  rock)      url='https://stream.radioparadise.com/rock-flacm' ;;
+  world)     url='https://stream.radioparadise.com/global-flacm' ;;
+  general)   url='https://stream.radioparadise.com/flacm' ;;
+  hits)      url='https://stream.joyhits.online:8072/joyhits.flac.ogg' ;;
+  eurodance) url='https://stream.radioclub80.cl:8032/stream.euro80flac' ;;
+  80s)       url='https://stream.radioclub80.cl:8002/clasicos80.flac' ;;
+  -h|--help) show_usage; exit 0 ;;
+  *)
+    echo "Error: Unknown genre '$GENRE'"
+    echo ""
+    show_usage
+    exit 1
+    ;;
+esac
 
 exec mpv --quiet --term-status-msg='${media-title} - ${metadata/artist}' "$url"
