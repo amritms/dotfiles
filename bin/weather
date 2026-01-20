@@ -1,0 +1,55 @@
+#!/bin/bash
+
+city=""
+options="?0" # Default: current weather only
+
+function show_help {
+    echo "Usage: weather [CITY] [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  --today    Show current weather + today's forecast"
+    echo "  --all      Show current weather + 3-day forecast"
+    echo "  --help     Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  weather               # Current weather for default city (Toronto)"
+    echo "  weather London        # Current weather for London"
+    echo "  weather --today       # Current + Today for Toronto"
+    echo "  weather Paris --all   # Full forecast for Paris"
+}
+
+# Parse arguments
+args=()
+while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+        --today)
+            options="?1F"
+            shift
+            ;;
+        --all)
+            options="?F"
+            shift
+            ;;
+        --help)
+            show_help
+            exit 0
+            ;;
+        *)
+            args+=("$1")
+            shift
+            ;;
+    esac
+done
+
+# Handle city argument
+if [ ${#args[@]} -eq 0 ]; then
+    city="Toronto"
+else
+    # Join array with spaces (default char for *) then replace spaces with +
+    # This handles `weather New York` and `weather "New York"`
+    city="${args[*]}"
+    city="${city// /+}"
+fi
+
+# Execute
+curl -s "http://wttr.in/${city}${options}"
