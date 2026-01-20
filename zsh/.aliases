@@ -77,6 +77,30 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias cd..="cd .."
 
+# Open buffer line in editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
+
+# Suffix Aliases
+alias -s md="bat"
+alias -s js="$EDITOR"
+alias -s yaml="bat -l yaml"
+alias -s json="jless"
+alias -s png="open"
+alias -s jpg="open"
+
+
+# Global aliases
+alias -g NE='2>/dev/null'
+alias -g nd='>/dev/null'
+alias -g NUL='>/dev/null 2>1'
+
+# command buffer hotkeys
+bindkey -s '^Xgc' 'git commit -m ""\C-b'
+
+alias zed="open -a /Applications/Zed.app -n"
 
 #React native
 #alias rncache="watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && npm cache clean && npm install && npm start -- --reset-cache"

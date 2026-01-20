@@ -150,7 +150,7 @@ function cala(){
 
 # All the dig info
 function digga() {
-        dig +nocmd "$1" any +multiline +noall +answer
+   dig +nocmd "$1" any +multiline +noall +answer
 }
 
 
@@ -159,15 +159,6 @@ function ssh-docker() {
    docker exec -it "$@" bash
 }
 
-function weather() {
-   city="$1"
-
-   if [ -z "$city" ]; then
-      city="Toronto"
-   fi
-
-   eval "curl http://wttr.in/${city}"
-}
 # Safe nuke function
 function nuke() {
     echo "⚠️  WARNING: This will permanently delete all untracked files and reset changes."

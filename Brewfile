@@ -19,8 +19,10 @@ brew 'grep' # Global regular expression print
 brew 'httpie' # HTTP client
 brew 'imagemagick' # Tools and libraries to manipulate images in many formats
 brew "jesseduffield/lazydocker/lazydocker" # Full Docker management app
+brew "jless" #pretty print JSON with syntax highlighting
 brew "lazyvim/lazyvim/lazyvim" # Full-featured Neovim distribution
 brew 'mackup' # Backup and restore your dotfiles
+brew 'mailpit' # SMTP server for testing
 brew 'mas' # Mac App Store manager
 brew "mpv" # Media player
 brew "neovim" # Full-featured Neovim distribution
@@ -30,6 +32,7 @@ brew "oh-my-posh" # Customizable prompt for any shell
 brew 'php'
 brew 'php@8.2'
 brew 'php@8.3'
+brew 'php@8.4'
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew "ripgrep" # Searching within files (better `grep`)
 brew 'sqlite' # Database
@@ -52,6 +55,7 @@ cask 'balenaetcher' # Balena Etcher
 cask 'bitwarden'
 cask "bruno" # Local-first API client
 cask "dash" # API documentation reader
+cask "datagrip" Database management system from Jetbrains (free for personal use)
 cask 'docker' # Docker
 cask 'filezilla' # free FTP client
 cask 'firefox@developer-edition' # Firefox Developer Edition
@@ -64,6 +68,7 @@ cask 'handbrake' # Video converter
 cask 'headset' # Headset youtube player
 cask 'herd' # Laravel and PHP development environment manager
 cask 'imageoptim' # Image Optimizer
+cask 'iina' # video player
 cask 'insomnia' # Insomnia
 cask 'iterm2' # iTerm2
 cask "itsycal" # Tiny popup calendar in a menu bar
@@ -74,14 +79,15 @@ cask "notion" # Collaborative note taking app
 cask "obsidian" # Main note taking app
 cask "orbstack" # Running containerized applications. Ships `docker-compose` as well
 cask "pearcleaner" # Clean up macOS from junk and apps leftovers
+cask "pgadmin4" # Database management for postgres
 cask 'phpstorm'
 cask 'qbittorrent'
 cask "raycast" # All-in-one app / tasks launcher
-cask 'sequel-ace'
+cask "selfcontrol" # Block your own access to distracting websites
+cask 'sequel-ace' # MySQL/MariaDB database management for macOS
 cask "slack" # Messaging social platform
 cask 'sublime-text'
 cask 'surfshark'
-cask "tableplus" # Database management system
 cask "telegram" # Messenger
 cask 'there' # Tool to display the local times of friends, teammates, cities or any time zone
 cask 'vlc' # Video player
