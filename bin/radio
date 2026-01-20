@@ -14,6 +14,12 @@
 
 set -euo pipefail
 
+if [ "$#" -eq 0 ]; then
+  echo "Usage: $(basename "$0") <genre>"
+  echo "Available genres: lofi, octave, salsa, mix, mellow, rock, world, general, hits, eurodance, 80s"
+  exit 1
+fi
+
 if [ "$1" == lofi ]; then
   url='https://live.hunter.fm/lofi_low'
 elif [ "$1" == octave ]; then
