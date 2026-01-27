@@ -8,6 +8,7 @@ brew 'bash' # Latest Bash version
 brew "bat" # Output highlighting (better `cat`)
 brew "betterzip" # Extract and view archives
 brew "btop" # Performance and resource monitoring tool (better `top`)
+brew "colima" # Container runtimes on macOS (and Linux) with minimal setup, docker-desktop and orbstack alternative
 brew 'composer' # PHP package manager
 brew 'coreutils' # Those that come with macOS are outdated
 brew 'ffmpeg' # Video converter
@@ -20,12 +21,12 @@ brew 'httpie' # HTTP client
 brew 'imagemagick' # Tools and libraries to manipulate images in many formats
 brew "jesseduffield/lazydocker/lazydocker" # Full Docker management app
 brew "jless" #pretty print JSON with syntax highlighting
-brew "lazyvim/lazyvim/lazyvim" # Full-featured Neovim distribution
 brew 'mackup' # Backup and restore your dotfiles
 brew 'mailpit' # SMTP server for testing
 brew 'mas' # Mac App Store manager
 brew "mpv" # Media player
 brew "neovim" # Full-featured Neovim distribution
+brew "lazyvim/lazyvim/lazyvim" # Full-featured Neovim distribution
 brew 'node'
 brew 'npm'
 brew "oh-my-posh" # Customizable prompt for any shell

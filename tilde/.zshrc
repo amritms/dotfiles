@@ -1,3 +1,10 @@
+
+# Top of .zshrc
+DISABLE_AUTO_UPDATE="true"
+DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_COMPFIX="true"
+
+
 # --- 1. Environment & Path ---
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$HOME/.oh-my-zsh
@@ -50,13 +57,20 @@ zinit light Aloxaf/fzf-tab
 
 # Add in snippets
 zinit snippet OMZP::git
-zinit snippet OMZP::aws
+#zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 
 # --- 5. Completion Initialization ---
-autoload -U compinit && compinit
+# autoload -U compinit && compinit
+# Smarter completion initialization
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 zinit cdreplay -q
 
 # --- 5b. Sourcing Aliases & Functions (Post-Plugin) ---
@@ -171,3 +185,4 @@ export HERD_PHP_84_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Suppor
 
 # Herd injected PHP 8.5 configuration.
 export HERD_PHP_85_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/85/"
+

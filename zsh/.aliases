@@ -20,8 +20,6 @@ alias sites="cd $HOME/Projects"
 
 # Laravel
 alias serve="php artisan serve"
-alias art="php artisan"
-
 alias a="php artisan"
 alias art="php artisan"
 alias fresh="php artisan migrate:fresh --seed"
