@@ -1,8 +1,8 @@
 
 # Top of .zshrc
-DISABLE_AUTO_UPDATE="true"
-DISABLE_MAGIC_FUNCTIONS="true"
-DISABLE_COMPFIX="true"
+#DISABLE_AUTO_UPDATE="true"
+#DISABLE_MAGIC_FUNCTIONS="true"
+#DISABLE_COMPFIX="true"
 
 
 # --- 1. Environment & Path ---
@@ -48,11 +48,18 @@ autoload -Uz _zinit
 # zinit ice depty=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
+# zsh-completions must be loaded before compinit
 zinit light zsh-users/zsh-completions
+
+# --- 5. Completion Initialization ---
+# compinit must be called after adding completions to fpath but before loading fzf-tab
+autoload -Uz compinit && compinit
+
+# Load other plugins
 zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light jessarcher/zsh-artisan
+
+# fzf-tab must be loaded AFTER compinit
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
@@ -62,16 +69,10 @@ zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 
-# --- 5. Completion Initialization ---
-# autoload -U compinit && compinit
-# Smarter completion initialization
-autoload -Uz compinit
-if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
-    compinit
-else
-    compinit -C
-fi
 zinit cdreplay -q
+
+# Syntax highlighting should be loaded last
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # --- 5b. Sourcing Aliases & Functions (Post-Plugin) ---
 # We load aliases and functions AFTER plugins so user definitions override plugin defaults.
@@ -158,20 +159,16 @@ export PHP_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/":$PH
 export NVM_DIR="$HOME/Library/Application Support/Herd/config/nvm"
 
 
-# NVM Lazy Loading
-function nvm node npm yarn pnpm {
-  unfunction nvm node npm yarn pnpm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-  "$0" "$@"
-}
+# NVM Loading
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
 [[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
 
 # Herd injected PHP configuration.
-export HERD_PHP_74_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/74/"
-export HERD_PHP_80_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/80/"
-export HERD_PHP_81_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/81/"
+# export HERD_PHP_74_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/74/"
+# export HERD_PHP_80_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/80/"
+# export HERD_PHP_81_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/81/"
 export HERD_PHP_82_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/82/"
 export HERD_PHP_83_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/83/"
 export HERD_PHP_84_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/84/"
@@ -180,5 +177,3 @@ export HERD_PHP_85_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/p
 export PATH="$HOME/Library/Application Support/Herd/bin/":$PATH
 
 export PATH="$PATH:$HOME/.local/bin"
-
-alias cursorpersonal='/Applications/Cursor_Personal.app/Contents/MacOS/Cursor --user-data-dir=$HOME/.cursor-profile-2 --extensions-dir=$HOME/.cursor-profile-2/extensions'

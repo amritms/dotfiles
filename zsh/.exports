@@ -31,6 +31,7 @@ export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; histor
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 export HISTORY_IGNORE="(ls|cd|cd -|pwd|exit|date|* --help)"
 export HISTTIMEFORMAT="%F %T "
+export HIST_STAMPS="%F %T"
 
 # Environment
 export LANG="en_US.UTF-8"
