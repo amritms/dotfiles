@@ -20,14 +20,14 @@ brew 'mackup' # Backup and restore your dotfiles
 brew 'mailpit' # SMTP server for testing
 brew 'mas' # Mac App Store manager
 brew "mpv" # Media player
-brew "neovim" # Full-featured Neovim distribution
-brew "lazyvim/lazyvim/lazyvim" # Full-featured Neovim distribution
+brew "neovim" # Neovim text editor
 brew 'node'
 brew "oh-my-posh" # Customizable prompt for any shell
 brew 'php'
 brew 'php@8.2'
 brew 'php@8.3'
 brew 'php@8.4'
+brew 'php@8.5'
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew "ripgrep" # Searching within files (better `grep`)
 brew 'sqlite' # Database
