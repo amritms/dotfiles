@@ -1,7 +1,3 @@
-# Taps
-tap 'homebrew/cask-fonts'
-tap 'homebrew/cask-versions'
-
 # Binaries
 brew 'awscli'
 brew 'bash' # Latest Bash version
@@ -56,14 +52,14 @@ cask 'balenaetcher' # Balena Etcher
 cask 'bitwarden'
 cask "bruno" # Local-first API client
 cask "dash" # API documentation reader
-cask "datagrip" Database management system from Jetbrains (free for personal use)
+cask "datagrip" # Database management system from Jetbrains (free for personal use)
 cask 'docker' # Docker
 cask 'filezilla' # free FTP client
 cask 'firefox@developer-edition' # Firefox Developer Edition
 cask 'font-fira-code'
 cask 'font-fira-code-nerd-font'
 cask "ghostty" # Better terminal emulator
-cask 'google-backup-and-sync' # Google Backup and Sync
+cask 'google-drive' # Google Drive
 cask 'google-chrome' # Google Chrome
 cask 'handbrake' # Video converter
 cask 'headset' # Headset youtube player
@@ -100,13 +96,8 @@ cask "whatsapp" # Messenger
 mas 'Amphetamine', id: 937984704
 #mas 'Byword', id: 420212497
 mas 'Giphy Capture', id: 668208984
-#mas 'Irvue Wallpaper changer', id: 1039633667
 #mas 'Keynote', id: 409183694
 #mas 'Numbers', id: 409203825
 #mas 'RescueTime', id: 966285407
 #mas 'Spark', id: 1176895641
 
-
-# Remove outdated versions of formulae and casks from the cellar
-# Besides, this will run `brew autoremove` to remove all the hanging, no longer needed packages
-brew cleanup --prune=all

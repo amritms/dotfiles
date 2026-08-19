@@ -54,8 +54,8 @@ brew update
 
 # Install all our dependencies with bundle (See Brewfile)
 echo "Installing software…"
-brew tap homebrew/bundle
 brew bundle --file "$DOTFILES_DIR/Brewfile"
+brew cleanup --prune=all
 
 # Set default MySQL root password and auth type
 #mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
