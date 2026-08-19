@@ -2,7 +2,6 @@
 brew 'awscli'
 brew 'bash' # Latest Bash version
 brew "bat" # Output highlighting (better `cat`)
-brew "betterzip" # Extract and view archives
 brew "btop" # Performance and resource monitoring tool (better `top`)
 brew "colima" # Container runtimes on macOS (and Linux) with minimal setup, docker-desktop and orbstack alternative
 brew 'composer' # PHP package manager
@@ -24,7 +23,6 @@ brew "mpv" # Media player
 brew "neovim" # Full-featured Neovim distribution
 brew "lazyvim/lazyvim/lazyvim" # Full-featured Neovim distribution
 brew 'node'
-brew 'npm'
 brew "oh-my-posh" # Customizable prompt for any shell
 brew 'php'
 brew 'php@8.2'
@@ -49,6 +47,7 @@ brew "zsh-syntax-highlighting" # Fish-like syntax highlighting for Zsh
 # GUI Apps
 cask 'alt-tab' # windows like preview for tab switcher
 cask 'balenaetcher' # Balena Etcher 
+cask 'betterzip' # Extract and view archives
 cask 'bitwarden'
 cask "bruno" # Local-first API client
 cask "dash" # API documentation reader
