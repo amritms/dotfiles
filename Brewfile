@@ -14,7 +14,7 @@ brew "git-delta" # Diff pager for `git` and `grep` output (better `diff`)
 brew 'grep' # Global regular expression print
 brew 'httpie' # HTTP client
 brew 'imagemagick' # Tools and libraries to manipulate images in many formats
-brew "jesseduffield/lazydocker/lazydocker" # Full Docker management app
+brew "lazydocker" # Full Docker management app
 brew "jless" #pretty print JSON with syntax highlighting
 brew 'mackup' # Backup and restore your dotfiles
 brew 'mailpit' # SMTP server for testing
