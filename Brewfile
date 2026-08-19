@@ -90,6 +90,7 @@ cask 'there' # Tool to display the local times of friends, teammates, cities or 
 cask 'vlc' # Video player
 cask "visual-studio-code" # Main code editor
 cask "whatsapp" # Messenger
+cask "zed" # Zed Editor
 
 
 # Mac App Store

@@ -35,6 +35,10 @@ fi
 ln -sf "$DOTFILES_DIR/tilde/.gitignore_global" "$HOME/.gitignore_global"
 git config --global core.excludesfile "$HOME/.gitignore_global"
 
+# Symlink other root dotfiles
+[ -f "$DOTFILES_DIR/tilde/.ideavimrc" ] && ln -sf "$DOTFILES_DIR/tilde/.ideavimrc" "$HOME/.ideavimrc"
+[ -f "$DOTFILES_DIR/tilde/.tlrc.toml" ] && ln -sf "$DOTFILES_DIR/tilde/.tlrc.toml" "$HOME/.tlrc.toml"
+
 # Backup existing zsh file if not already a symlink
 if [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ]; then
   mv "$HOME/.zshrc" "$HOME/.zshrc.backup"
@@ -42,6 +46,18 @@ fi
 
 # symlinks the .zshrc file from the .dotfiles
 ln -sf "$DOTFILES_DIR/tilde/.zshrc" "$HOME/.zshrc"
+
+# Symlink ~/.config apps and oh-my-posh theme
+mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config/oh-my-posh"
+ln -sf "$DOTFILES_DIR/tilde/config/oh-my-posh-custom/themes/omp-zen.json" "$HOME/.config/oh-my-posh/omp-zen.json"
+
+for config_dir in "$DOTFILES_DIR"/tilde/config/*; do
+  if [ -d "$config_dir" ]; then
+    base=$(basename "$config_dir")
+    ln -sfn "$config_dir" "$HOME/.config/$base"
+  fi
+done
 
 # Use Touch ID to authorize sudo
 if [ ! -f /etc/pam.d/sudo_local ]; then

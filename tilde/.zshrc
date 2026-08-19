@@ -85,7 +85,16 @@ done
 unset file
 
 # --- 6. Prompt (Oh-My-Posh) ---
-eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/omp-zen.json)"
+OMP_THEME="$DOTFILES/tilde/config/oh-my-posh-custom/themes/omp-zen.json"
+if [ ! -f "$OMP_THEME" ]; then
+  OMP_THEME="$HOME/.config/oh-my-posh/omp-zen.json"
+fi
+
+if [ -f "$OMP_THEME" ]; then
+  eval "$(oh-my-posh init zsh --config "$OMP_THEME")"
+elif command -v oh-my-posh &>/dev/null; then
+  eval "$(oh-my-posh init zsh)"
+fi
 
 # --- 7. Keybindings ---
 bindkey -e
@@ -167,6 +176,11 @@ fi
 if [ -n "${NVM_DIR:-}" ] && [ -s "$NVM_DIR/nvm.sh" ]; then
   . "$NVM_DIR/nvm.sh"
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+fi
+
+# Fallback stub so Herd's automatic nvmrc hook doesn't error when NVM isn't active
+if ! typeset -f nvm_find_nvmrc >/dev/null 2>&1; then
+  nvm_find_nvmrc() { return 1; }
 fi
 
 [[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
