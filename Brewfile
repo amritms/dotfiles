@@ -61,7 +61,7 @@ cask 'font-fira-code-nerd-font'
 cask "ghostty" # Better terminal emulator
 cask 'google-drive' # Google Drive
 cask 'google-chrome' # Google Chrome
-cask 'handbrake' # Video converter
+cask 'handbrake-app' # Video converter
 cask 'headset' # Headset youtube player
 cask 'herd' # Laravel and PHP development environment manager
 cask 'imageoptim' # Image Optimizer
