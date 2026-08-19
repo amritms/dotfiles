@@ -52,7 +52,7 @@ cask 'bitwarden'
 cask "bruno" # Local-first API client
 cask "dash" # API documentation reader
 cask "datagrip" # Database management system from Jetbrains (free for personal use)
-cask 'docker' # Docker
+cask 'docker-desktop' # Docker
 cask 'filezilla' # free FTP client
 cask 'firefox@developer-edition' # Firefox Developer Edition
 cask 'font-fira-code'
