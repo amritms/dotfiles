@@ -885,6 +885,7 @@ for app in "Activity Monitor" \
     "Tweetbot" \
     "Twitter" \
     "iCal"; do
-    killall "${app}" &> /dev/null
+    killall "${app}" &> /dev/null || true
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+

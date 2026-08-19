@@ -177,3 +177,14 @@ export HERD_PHP_85_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/p
 export PATH="$HOME/Library/Application Support/Herd/bin/":$PATH
 
 export PATH="$PATH:$HOME/.local/bin"
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/84/"
+
+
+# Herd injected PHP 8.5 configuration.
+export HERD_PHP_85_INI_SCAN_DIR="/Users/amritshrestha/Library/Application Support/Herd/config/php/85/"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/amritshrestha/.local/bin:$PATH"

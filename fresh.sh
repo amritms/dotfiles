@@ -2,32 +2,46 @@
 
 set -euo pipefail
 
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 echo "Setting up your Mac..."
 
 # Check for Oh My Zsh and install if we don't have it
-if test ! $(which omz); then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "Installing Oh My Zsh (unattended)..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)" "" --unattended
 fi
 
 # Check for Homebrew and install if we don't have it
-if test ! $(which brew); then
+if ! command -v brew &>/dev/null; then
+  echo "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+# Setup Homebrew environment for the current script session
+if [ -x "/opt/homebrew/bin/brew" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
+  if ! grep -q 'brew shellenv' "$HOME/.zprofile" 2>/dev/null; then
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
+  fi
+elif [ -x "/usr/local/bin/brew" ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+  if ! grep -q 'brew shellenv' "$HOME/.zprofile" 2>/dev/null; then
+    echo 'eval "$(/usr/local/bin/brew shellenv)"' >> "$HOME/.zprofile"
+  fi
 fi
 
 # Add global gitignore
-ln -s $HOME/.dotfiles/tilde/.gitignore_global $HOME/.gitignore_global
-git config --global core.excludesfile $HOME/.gitignore_global
+ln -sf "$DOTFILES_DIR/tilde/.gitignore_global" "$HOME/.gitignore_global"
+git config --global core.excludesfile "$HOME/.gitignore_global"
 
-# Backup existing zsh file
-if [[ -e "$HOME/.zshrc" ]]; then
+# Backup existing zsh file if not already a symlink
+if [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ]; then
   mv "$HOME/.zshrc" "$HOME/.zshrc.backup"
 fi
 
 # symlinks the .zshrc file from the .dotfiles
-ln -sw $HOME/.dotfiles/tilde/.zshrc $HOME/.zshrc
+ln -sf "$DOTFILES_DIR/tilde/.zshrc" "$HOME/.zshrc"
 
 # Use Touch ID to authorize sudo
 if [ ! -f /etc/pam.d/sudo_local ]; then
@@ -39,33 +53,35 @@ fi
 brew update
 
 # Install all our dependencies with bundle (See Brewfile)
-title "Installing software…"
+echo "Installing software…"
 brew tap homebrew/bundle
-brew bundle --file $HOME/.dotfiles/Brewfile
+brew bundle --file "$DOTFILES_DIR/Brewfile"
 
 # Set default MySQL root password and auth type
 #mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
 
-# Create a projects directories
-mkdir $HOME/Projects
-mkdir $HOME/Herd
+# Create projects directories
+mkdir -p "$HOME/Projects"
+mkdir -p "$HOME/Herd"
 
 # Create Code subdirectories
-mkdir $HOME/Code/blade-ui-kit
-mkdir $HOME/Code/laravel
+mkdir -p "$HOME/Code/blade-ui-kit"
+mkdir -p "$HOME/Code/laravel"
 
 # Clone Github repositories
-./clone.sh
+"$DOTFILES_DIR/clone.sh"
 
 # Symlink the Mackup config file to the home directory
-ln -s $HOME/.dotfiles/macos/.mackup.cfg $HOME/.mackup.cfg
+ln -sf "$DOTFILES_DIR/macos/.mackup.cfg" "$HOME/.mackup.cfg"
 
 
 # Symlink the aliases file to the home directory
 # aliases and custom-aliases are sourced directly from .dotfiles from ~/.zshrc
 
 # Set macOS preferences - we will run this last because this will reload the shell
-source ./macos/.macos.sh
+if [ -f "$DOTFILES_DIR/macos/.macos.sh" ]; then
+  source "$DOTFILES_DIR/macos/.macos.sh"
+fi
 
 
 echo '++++++++++++++++++++++++++++++'

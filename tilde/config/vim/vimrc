@@ -1,0 +1,122 @@
+" vim: fdm=marker foldenable sw=4 ts=4 sts=4
+" Amrit Shrestha's .vimrc File
+" "zo" to open folds, "zc" to close, "zn" to disable.
+
+" {{{ Clear all autocommands
+au!
+" }}}
+
+" Basic Setup:
+
+" enter the current millenium (not compatible with vi)
+set nocompatible
+
+" Show absolute line number for the current line
+set number            
+
+"set relative number
+set relativenumber
+
+" enable syntax and plugins (for netrw)
+syntax enable
+filetype plugin on
+
+" Status line
+set statusline=%!MyStatusLine()
+
+
+" Movement between tabs OR buffers
+nnoremap <silent> L :call MyNext()<CR>
+nnoremap <silent> H :call MyPrev()<CR>
+
+" Sane pasting
+command! Paste call SmartPaste()
+
+" Change indent continuously
+vmap < <gv
+vmap > >gv
+
+
+" Splits
+set splitright
+
+" For clever completion with the :find command
+set path+=**
+
+" Search
+set ignorecase smartcase
+set grepprg=grep\ -IrsnH
+
+" Typing behavior
+set backspace=indent,eol,start
+set showmatch
+set wildmode=full
+set wildmenu
+set complete-=i
+
+" Formatting
+set nowrap
+set tabstop=2 shiftwidth=2 softtabstop=2
+set foldlevelstart=2
+
+" Select the stuff I just pasted
+nnoremap gV `[V`]
+
+" MyStatusLine() {{{
+
+function! MyStatusLine()
+    let statusline = ""
+    " Filename (F -> full, f -> relative)
+    let statusline .= "%f"
+    " Buffer flags
+    let statusline .= "%( %h%1*%m%*%r%w%) "
+    " File format and type
+    let statusline .= "(%{&ff}%(\/%Y%))"
+    " Left/right separator
+    let statusline .= "%="
+    " Line & column
+    let statusline .= "(%l,%c%V) "
+    " Character under cursor (decimal)
+    let statusline .= "%03.3b "
+    " Character under cursor (hexadecimal)
+    let statusline .= "0x%02.2B "
+    " File progress
+    let statusline .= "| %P/%L"
+    return statusline
+endfunction
+
+" }}}
+
+" MyNext() and MyPrev(): Movement between tabs OR buffers {{{
+function! MyNext()
+    if exists( '*tabpagenr' ) && tabpagenr('$') != 1
+        " Tab support && tabs open
+        normal gt
+    else
+        " No tab support, or no tabs open
+        execute ":bnext"
+    endif
+endfunction
+
+function! MyPrev()
+    if exists( '*tabpagenr' ) && tabpagenr('$') != '1'
+        " Tab support && tabs open
+        normal gT
+    else
+        " No tab support, or no tabs open
+        execute ":bprev"
+    endif
+endfunction
+" }}}
+
+
+" {{{ Sane Pasting
+
+function! SmartPaste()
+    setl paste
+    normal "+p
+    setl nopaste
+endfunction
+
+" }}}
+

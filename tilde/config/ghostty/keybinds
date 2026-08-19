@@ -1,4 +1,15 @@
 keybind = global:f12=toggle_quick_terminal
+#map cmd+` no_op
+# Customizing the appearance (Optional)
+# Explicitly force the quick terminal to target the currently active monitor
+quick-terminal-screen = main
+# Fixes a macOS sizing calculation bug when Ghostty launches headless in the background
+initial-window = true
+# Define height (40%) and width (100%)
+quick-terminal-position = top
+quick-terminal-size = 40%, 100%
+quick-terminal-autohide = true
+quick-terminal-animation-duration = 0
 
 keybind=super+shift+\=new_split:right
 keybind=super+shift+-=new_split:down

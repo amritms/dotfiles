@@ -6,9 +6,15 @@
 let mapleader=" "
 let maplocalleader="\\"
 
+" Map :e! to synchronize the current file with the version on disk
+command! E action SynchronizeCurrentFile
+
+" Only save the current file with ':w'. To write all ':wa'
+set ideawrite=file
+
 " Confirm to save changes before exiting modified buffer
 set formatoptions=jcroqlnt
-" Print line number
+" Print current line number
 set number
 " Relative line numbers
 set relativenumber
@@ -350,38 +356,10 @@ let g:WhichKeyDesc_window_maximize = "<leader>wm Toggle Zoom Mode"
 nmap <leader>wm <Action>(ToggleDistractionFreeMode)
 
 
-" ========================================
-" Tab Management (Saved Layouts)
-" ========================================
-
-let g:WhichKeyDesc_tab_last = "<leader><tab>l Last Tab"
-nmap <leader><tab>l <Action>(StoreDefaultLayout)<Action>(ChangeToolWindowLayout)
-
-let g:WhichKeyDesc_tab_close_others = "<leader><tab>o Close Other Tabs"
-nmap <leader><tab>o :<cr>
-
-let g:WhichKeyDesc_tab_first = "<leader><tab>f First Tab"
-nmap <leader><tab>f <Action>(StoreDefaultLayout)<Action>(ChangeToolWindowLayout)
-
-let g:WhichKeyDesc_tab_new = "<leader><tab><tab> New Tab"
-nmap <leader><tab>f <Action>(StoreDefaultLayout)<Action>(StoreNewLayout)
-
-let g:WhichKeyDesc_tab_next = "<leader><tab>] Next Tab"
-nmap <leader><tab>] <Action>(StoreDefaultLayout)<Action>(ChangeToolWindowLayout)
-
-let g:WhichKeyDesc_tab_previous = "<leader><tab>[ Previous Tab"
-nmap <leader><tab>[ <Action>(StoreDefaultLayout)<Action>(ChangeToolWindowLayout)
-
-let g:WhichKeyDesc_tab_close = "<leader><tab>d Close Tab"
-nmap <leader><tab>f <Action>(StoreDefaultLayout)<Action>(ChangeToolWindowLayout)
-
 
 " ========================================
 " LSP Keymaps
 " ========================================
-
-let g:WhichKeyDesc_code_lsp_info = "<leader>cl Lsp Info"
-nmap <leader>cc :echo 'There is no equivalent mapping for Lsp Info.'<cr>
 
 let g:WhichKeyDesc_goto_definition = "gd Goto Definition"
 nmap gd <Action>(GotoDeclaration)
@@ -408,12 +386,6 @@ imap <C-k> <C-o><Action>(ParameterInfo)
 let g:WhichKeyDesc_code_action = "<leader>ca Code Action"
 nmap <leader>ca <Action>(RefactoringMenu)
 vmap <leader>ca <Action>(RefactoringMenu)
-
-let g:WhichKeyDesc_code_lens = "<leader>cc Run Codelens"
-nmap <leader>cc :echo 'There is no equivalent mapping for Run Codelens.'<cr>
-
-let g:WhichKeyDesc_code_lens_refresh = "<leader>cC Refresh & Display Codelens"
-nmap <leader>cC :echo 'There is no equivalent mapping for Refresh & Display Codelens.'<cr>
 
 let g:WhichKeyDesc_rename_file = "<leader>cR Rename File"
 nmap <leader>cR <Action>(RenameFile)
@@ -477,6 +449,8 @@ nmap <leader>fE :NERDTreeFind<cr>
 let g:WhichKeyDesc_git_explorer = "<leader>ge Git Explorer"
 nmap <leader>ge <Action>(ActivateVersionControlToolWindow)
 
+" Renaming in Explorer (NERDTree)
+autocmd FileType nerdtree nmap <buffer> r <Action>(RenameFile)
 
 " ========================================
 " Notifications
@@ -499,8 +473,8 @@ nmap <leader><space> <Action>(GotoFile)
 let g:WhichKeyDesc_buffers = "<leader>, Buffers"
 nmap <leader>, <Action>(Switcher)
 
-let g:WhichKeyDesc_grep = "<leader>/ Grep (Root Dir)"
-nmap <leader>/ <Action>(FindInPath)
+" let g:WhichKeyDesc_grep = "<leader>/ Grep (Root Dir)"
+" nmap <leader>/ <Action>(FindInPath)
 
 let g:WhichKeyDesc_command_history = "<leader>: Command History"
 nmap <leader>: :history<cr>

@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/Users/amritshrestha/.vim'
+let g:netrw_dirhist_9='/Users/amritshrestha/Projects/Herd/30-days-to-learn-laravel-11/app/Http/Controllers'
+let g:netrw_dirhist_8='/Users/amritshrestha/Projects/Herd/30-days-to-learn-laravel-11/app/Http'
+let g:netrw_dirhist_7='/Users/amritshrestha/Projects/Herd/30-days-to-learn-laravel-11/app'
+let g:netrw_dirhist_6='/Users/amritshrestha/Projects/Herd/30-days-to-learn-laravel-11'
+let g:netrw_dirhist_5='/Users/amritshrestha/Projects/Herd/30-days-to-learn-laravel-11/app/Http/Controllers'
+let g:netrw_dirhist_4='/Users/amritshrestha/Projects/Herd/30-days-to-learn-laravel-11/app/Http'
+let g:netrw_dirhist_3='/Users/amritshrestha/Projects/Herd/30-days-to-learn-laravel-11/app'
+let g:netrw_dirhist_2='/Users/amritshrestha/Projects/Herd/30-days-to-learn-laravel-11'
+let g:netrw_dirhist_1='/Users/amritshrestha/.dotfiles/tilde/config/nvim'
