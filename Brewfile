@@ -50,10 +50,11 @@ cask 'balenaetcher' # Balena Etcher
 cask 'betterzip' # Extract and view archives
 cask 'bitwarden'
 cask "bruno" # Local-first API client
-cask "dash" # API documentation reader
+cask "homebrew/cask/dash" # API documentation reader
 cask "datagrip" # Database management system from Jetbrains (free for personal use)
 cask 'docker-desktop' # Docker
-cask 'filezilla' # free FTP client
+# cask 'filezilla' # Note: FileZilla was removed from Homebrew Cask; install manually from filezilla-project.org or use cyberduck
+cask 'cyberduck' # Free FTP client (FileZilla alternative)
 cask 'firefox@developer-edition' # Firefox Developer Edition
 cask 'font-fira-code'
 cask 'font-fira-code-nerd-font'
