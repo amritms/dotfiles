@@ -30,5 +30,5 @@ clone_repo https://github.com/Aloxaf/fzf-tab "$ZSH_CUSTOM/plugins/fzf-tab"
 # Personal
 clone_repo git@github.com:amritms/docker-multi-project-mysql57.git "$SITES/mysql57"
 clone_repo git@github.com:amritms/docker-multi-project-mysql8.git "$SITES/mysql"
-clone_repo git@github.com:amritms/docker-postgres.git "$SITES/postgres"
+clone_repo git@github.com:amritms/docker-multi-project-postgres-alpine.git "$SITES/postgres"
 
