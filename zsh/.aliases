@@ -1,12 +1,23 @@
 # Shortcuts
 alias reloadshell="source $HOME/.zshrc"
-alias ll="/usr/local/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
 alias pstorm='open -a /Applications/PhpStorm.app "`pwd`"'
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias c="clear"
 
 # Aliases
-alias ls='ls --color'
+if command -v gls &>/dev/null; then
+  alias ll="gls -AhlFo --color --group-directories-first"
+  alias ls="gls --color"
+elif [ -x "/opt/homebrew/opt/coreutils/libexec/gnubin/ls" ]; then
+  alias ll="/opt/homebrew/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
+  alias ls="/opt/homebrew/opt/coreutils/libexec/gnubin/ls --color"
+elif [ -x "/usr/local/opt/coreutils/libexec/gnubin/ls" ]; then
+  alias ll="/usr/local/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
+  alias ls="/usr/local/opt/coreutils/libexec/gnubin/ls --color"
+else
+  alias ll="ls -AhlF"
+  alias ls="ls --color"
+fi
 alias vi="vim"
 #alias vim="nvim"
 alias vimdiff="nvim -d"
@@ -36,7 +47,7 @@ alias pf="./vendor/bin/phpunit --filter"
 #alias cfresh="rm -rf vendor/ composer.lock && composer i"
 alias phpi81="docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint php --rm registry.gitlab.com/grahamcampbell/php:8.1"
 alias php82="docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint php --rm registry.gitlab.com/grahamcampbell/php:8.2"
-alias composer="php -d memory_limit=-1 /usr/local/bin/composer"
+alias composer="php -d memory_limit=-1 $(which composer 2>/dev/null || echo 'composer')"
 
 # JS
 alias nfresh="rm -rf node_modules/ package-lock.json && npm install"

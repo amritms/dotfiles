@@ -5,6 +5,10 @@ add_to_path() {
   fi
 }
 
+# Coreutils gnubin (GNU utilities without 'g' prefix)
+[ -d "/opt/homebrew/opt/coreutils/libexec/gnubin" ] && add_to_path "/opt/homebrew/opt/coreutils/libexec/gnubin"
+[ -d "/usr/local/opt/coreutils/libexec/gnubin" ] && add_to_path "/usr/local/opt/coreutils/libexec/gnubin"
+
 # Load dotfiles binaries
 add_to_path "$DOTFILES/bin"
 
