@@ -70,7 +70,8 @@ brew update
 
 # Install all our dependencies with bundle (See Brewfile)
 echo "Installing software…"
-brew bundle --file "$DOTFILES_DIR/Brewfile"
+export HOMEBREW_CASK_OPTS="--no-quarantine"
+brew bundle --file "$DOTFILES_DIR/Brewfile" --no-upgrade
 brew cleanup --prune=all
 
 # Set default MySQL root password and auth type
